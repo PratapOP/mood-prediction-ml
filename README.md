@@ -42,7 +42,7 @@ mood-prediction/
 ### 1. Clone and Environment
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/mood-prediction-ml.git
+git clone https://github.com/PratapOP/mood-prediction-ml.git
 cd mood-prediction-ml
 python -m venv venv
 source venv/bin/activate  # Windows: venv\Scripts\activate
