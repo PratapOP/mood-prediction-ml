@@ -45,7 +45,8 @@ mood-prediction/
 git clone https://github.com/PratapOP/mood-prediction-ml.git
 cd mood-prediction-ml
 python -m venv venv
-source venv/bin/activate  # Windows: venv\Scripts\activate
+#Windows: 
+venv\Scripts\activate
 
 ```
 
@@ -75,12 +76,6 @@ python app/main.py
 ```
 
 Then, simply open `frontend/index.html` in your favorite web browser.
-
-## 📈 Future Improvements
-
-* [ ] Add **SQLite** database support to save mood history permanently.
-* [ ] Implement **Random Forest** for higher accuracy.
-* [ ] Add user authentication for personalized tracking.
 
 ---
 
