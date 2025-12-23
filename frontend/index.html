@@ -3,35 +3,99 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mood Predictor</title>
+    <title>MoodAI | Intelligent Tracker</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
-        <h1>Daily Mood Predictor</h1>
-        
-        <div class="main-layout">
-            <section class="input-section">
-                <h3>Enter Today's Routine</h3>
-                <form id="moodForm">
-                    <label>Sleep (Hours): <input type="number" id="sleep" value="7" step="0.5"></label>
-                    <label>Screen Time (Hours): <input type="number" id="screen" value="4"></label>
-                    <label>Exercise (Minutes): <input type="number" id="exercise" value="30"></label>
-                    <label>Work/Study (Hours): <input type="number" id="work" value="8"></label>
-                    <label>Social (1-10): <input type="range" id="social" min="1" max="10" value="5"></label>
-                    <label>Caffeine (Cups): <input type="number" id="caffeine" value="2"></label>
-                    <button type="submit">Predict Mood</button>
-                </form>
-            </section>
-
-            <section class="result-section">
-                <div id="moodOutput">
-                    <h3>Predicted Mood: <span id="moodResult">?</span></h3>
-                </div>
-                <canvas id="moodChart"></canvas>
-            </section>
+    <div id="auth-container">
+        <div class="auth-box">
+            <div class="logo">🎯</div>
+            <h2>MoodAI</h2>
+            <p id="auth-msg">Intelligence for your well-being</p>
+            <input type="text" id="username" placeholder="Username">
+            <input type="password" id="password" placeholder="Password">
+            <div class="auth-buttons">
+                <button onclick="handleAuth('login')">Sign In</button>
+                <button onclick="handleAuth('register')" class="secondary">Create Account</button>
+            </div>
         </div>
+    </div>
+
+    <div id="app-content" style="display: none;">
+        <nav class="glass-nav">
+            <div class="nav-brand">Mood<span>AI</span></div>
+            <div class="nav-user">
+                <span id="display-user">User</span>
+                <button onclick="handleAuth('logout')" class="logout-btn">Logout</button>
+            </div>
+        </nav>
+
+        <main class="dashboard">
+            <div class="grid-container">
+                <section class="card glass">
+                    <div class="card-header">
+                        <h3>Daily Routine</h3>
+                        <label class="switch">
+                            <input type="checkbox" id="simMode">
+                            <span class="slider round"></span>
+                        </label>
+                        <span class="sim-label">Simulation Mode</span>
+                    </div>
+                    <form id="moodForm">
+                        <div class="input-grid">
+                            <div class="input-group">
+                                <label>Sleep (hrs)</label>
+                                <input type="number" id="sleep" value="7" step="0.5" required>
+                            </div>
+                            <div class="input-group">
+                                <label>Screen (hrs)</label>
+                                <input type="number" id="screen" value="4" required>
+                            </div>
+                            <div class="input-group">
+                                <label>Exercise (min)</label>
+                                <input type="number" id="exercise" value="30" required>
+                            </div>
+                            <div class="input-group">
+                                <label>Work (hrs)</label>
+                                <input type="number" id="work" value="8" required>
+                            </div>
+                            <div class="input-group">
+                                <label>Social (1-10)</label>
+                                <input type="number" id="social" value="5" required>
+                            </div>
+                            <div class="input-group">
+                                <label>Caffeine</label>
+                                <input type="number" id="caffeine" value="2" required>
+                            </div>
+                        </div>
+                        <button type="submit" id="predictBtn">Analyze Mood</button>
+                    </form>
+                </section>
+
+                <section class="card glass result-card">
+                    <h3>Current Insight</h3>
+                    <div id="moodResult" class="mood-display">---</div>
+                    <p id="sim-notice" style="display:none; color: #3498db;">✨ Simulation active - data not saved</p>
+                </section>
+
+                <section class="card glass" id="explanation-container">
+                    <h3>Impact Analysis</h3>
+                    <p id="top-factor"></p>
+                    <div class="chart-wrapper">
+                        <canvas id="importanceChart"></canvas>
+                    </div>
+                </section>
+
+                <section class="card glass history-card">
+                    <h3>Mood Timeline</h3>
+                    <div class="chart-wrapper">
+                        <canvas id="moodChart"></canvas>
+                    </div>
+                </section>
+            </div>
+        </main>
     </div>
     <script src="script.js"></script>
 </body>

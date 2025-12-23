@@ -1,68 +1,191 @@
+:root {
+    --bg: #0f172a;
+    --card-bg: rgba(30, 41, 59, 0.7);
+    --accent: #3b82f6;
+    --text: #f1f5f9;
+    --happy: #10b981;
+    --sad: #ef4444;
+}
+
 body {
-    font-family: 'Segoe UI', sans-serif;
-    background: #f4f7f6;
-    color: #333;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background-color: var(--bg);
+    background-image: radial-gradient(at 0% 0%, rgba(59, 130, 246, 0.15) 0, transparent 50%),
+                      radial-gradient(at 100% 100%, rgba(16, 185, 129, 0.1) 0, transparent 50%);
+    color: var(--text);
+    margin: 0;
+    min-height: 100vh;
 }
 
-.container {
-    max-width: 900px;
-    margin: 40px auto;
-    padding: 20px;
-    background: white;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+/* Glassmorphism Classes */
+.glass {
+    background: var(--card-bg);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 24px;
 }
 
-h1 {
-    text-align: center;
-    color: #2c3e50;
-}
-
-.main-layout {
+.glass-nav {
     display: flex;
-    gap: 40px;
-    margin-top: 30px;
+    justify-content: space-between;
+    padding: 20px 40px;
+    background: rgba(15, 23, 42, 0.8);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.input-section {
-    flex: 1;
+.nav-brand {
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: -1px;
 }
 
-form label {
+.nav-brand span {
+    color: var(--accent);
+}
+
+/* Dashboard Layout */
+.dashboard {
+    padding: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 20px;
+}
+
+.card {
+    padding: 25px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+}
+
+.card h3 {
+    margin-top: 0;
+    font-size: 1.1rem;
+    color: #94a3b8;
+}
+
+/* Inputs */
+.input-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.input-group label {
     display: block;
-    margin-bottom: 15px;
-    font-weight: bold;
+    font-size: 0.8rem;
+    margin-bottom: 5px;
+    color: #94a3b8;
 }
 
 input {
-    width: 100%;
-    padding: 8px;
-    margin-top: 5px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
+    background: rgba(15, 23, 42, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: white;
+    padding: 10px;
+    border-radius: 8px;
+    width: 90%;
 }
 
 button {
-    width: 100%;
-    padding: 12px;
-    background: #3498db;
+    background: var(--accent);
     color: white;
     border: none;
-    border-radius: 4px;
+    padding: 14px;
+    border-radius: 12px;
+    font-weight: 600;
     cursor: pointer;
-    font-size: 16px;
+    transition: transform 0.2s;
 }
 
 button:hover {
-    background: #2980b9;
+    transform: translateY(-2px);
+    filter: brightness(1.1);
 }
 
-.result-section {
-    flex: 1.5;
+/* Mood Display */
+.mood-display {
+    font-size: 3rem;
+    font-weight: 800;
+    margin: 20px 0;
+    text-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+}
+
+/* Simulation Toggle */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 20px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #334155;
+    transition: .4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 14px;
+    width: 14px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: var(--accent);
+}
+
+input:checked + .slider:before {
+    transform: translateX(20px);
+}
+
+.sim-label {
+    font-size: 0.7rem;
+    margin-left: 10px;
+    vertical-align: middle;
+}
+
+/* Auth Overlay */
+#auth-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.auth-box {
+    background: var(--card-bg);
+    padding: 50px;
+    border-radius: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    width: 300px;
     text-align: center;
-}
-
-#moodResult {
-    font-size: 2rem;
-    color: #e67e22;
 }
