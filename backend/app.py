@@ -1,8 +1,8 @@
 from flask import Flask
-from backend.config import Config
-from backend.extensions import db, login_manager, cors
-from backend.models import User
-from backend.auth_routes import auth_bp
+from .config import Config
+from .extentions import db, login_manager, cors
+from .models import User
+from .auth_routes import auth_bp
 import os
 
 def create_app():
@@ -30,8 +30,3 @@ def create_app():
         db.create_all()
 
     return app
-
-
-if __name__ == "__main__":
-    app = create_app()
-    app.run(debug=True)
